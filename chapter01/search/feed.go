@@ -26,8 +26,9 @@ func RetrieveFeeds() ([]*Feed, error) {
 
 	// 파일을 읽어 feed 구조체의 포인터의 슬라이스로 변환한다.
 	var feeds []*Feed
-
 	err = json.NewDecoder(file).Decode(&feeds)
 
+	// 호출 함수가 오류를 처리할 수 있으므로 오류 처리는 하지 않는다.
 	return feeds, err
+
 }

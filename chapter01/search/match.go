@@ -28,3 +28,12 @@ func Match(matcher Matcher, feed *Feed, searchTerm string, result chan<- *Result
 		results <- result
 	}
 }
+
+func Display(results chan *Result) {
+
+	// 채널은 검색 결과가 기록될 때까지 접근이 차단된다.
+	// 채널이 닫히면 for 루프가 종료된다.
+	for result := range results {
+		log.Printf("%s:\n%s\n\n", result.Field, result.Content)
+	}
+}

@@ -27,6 +27,7 @@ func Run(seachTerm string) {
 
 	// 각기 다른 종류의 피드를 처리할 고루틴을 실행한다.
 	for _, feed := range feeds {
+
 		// 검색을 위해 검색기를 조회한다.
 		matcher, exists := matcher[feed.Type]
 		if !exists {
