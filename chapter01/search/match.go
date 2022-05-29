@@ -37,3 +37,5 @@ func Display(results chan *Result) {
 		log.Printf("%s:\n%s\n\n", result.Field, result.Content)
 	}
 }
+
+// test1
