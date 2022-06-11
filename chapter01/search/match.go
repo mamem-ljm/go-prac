@@ -14,8 +14,8 @@ type Matcher interface {
 }
 
 // Match 함수는 고루틴으로서 호출되며 개별 피드 타입에 대한 검색을 동시에 수행한다.
-func Match(matcher Matcher, feed *Feed, searchTerm string, result chan<- *Result) {
-	// 지정도니 검색기를 이용해 검색을 수행한다.
+func Match(matcher Matcher, feed *Feed, searchTerm string, results chan<- *Result) {
+	// 지정되니 검색기를 이용해 검색을 수행한다.
 	searchResults, err := matcher.Search(feed, searchTerm)
 	if err != nil {
 		log.Println(err)

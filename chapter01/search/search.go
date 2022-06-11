@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-var matcher = make(map[string]Mather)
+var matcher = make(map[string]Matcher)
 
 // 검색 로직을 수행할 RUN함수
 func Run(seachTerm string) {
@@ -31,8 +31,7 @@ func Run(seachTerm string) {
 		// 검색을 위해 검색기를 조회한다.
 		matcher, exists := matcher[feed.Type]
 		if !exists {
-			matcher = matcher["default"]
-		}
+			matcher = matchers["default"]
 
 		// 검색을 실행하기 위해 고루틴을 실행한다.
 		go func(mathcer Matcher, feed *Feed) {
@@ -54,4 +53,14 @@ func Run(seachTerm string) {
 	// 검색 결과를 화면에 표시하고
 	// 마지막 결과를 표시한 뒤 리턴한다.
 	Display(results)
+}
+
+// 프로그램에서 사용할 검색기를 등록할 함수를 정의한다.
+func Register(feedType string, matcher Matcher) {
+	if _, exists := matchers[feedType]; exists {
+		log.Fatalln(feedType, "검색기가 이미 등록되었습니다.")
+	}
+
+	log.Println("등록 완료:", feedType, " 검색기")
+	matchers[feedType] = matcher
 }
