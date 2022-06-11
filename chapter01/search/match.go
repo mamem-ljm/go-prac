@@ -9,7 +9,6 @@ type Result struct {
 }
 
 // Matcher 인터페이스는 새로운 검색 타입을 구현할 때 필요한 동작을 한다.
-
 type Matcher interface {
 	Search(feed *Feed, searchTerm string) ([]*Result, error)
 }
